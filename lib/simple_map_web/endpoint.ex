@@ -1,7 +1,8 @@
 defmodule SimpleMapWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :simple_map
+  use Absinthe.Phoenix.Endpoint
 
-  socket "/socket", SimpleMapWeb.UserSocket,
+  socket "/socket", SimpleMapWeb.AbsintheSocket,
     websocket: true,
     longpoll: false
 
@@ -9,11 +10,11 @@ defmodule SimpleMapWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/",
-    from: :simple_map,
-    gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+  # plug Plug.Static,
+  #  at: "/",
+  #  from: :simple_map,
+  #  gzip: false,
+  #  only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -39,6 +40,8 @@ defmodule SimpleMapWeb.Endpoint do
     store: :cookie,
     key: "_simple_map_key",
     signing_salt: "Ye8ntHht"
+
+  plug CORSPlug
 
   plug SimpleMapWeb.Router
 end
