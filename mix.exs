@@ -32,6 +32,11 @@ defmodule SimpleMap.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:absinthe, "~> 1.4"},
+      {:absinthe_ecto, "~> 0.1.3"},
+      {:absinthe_plug, "~> 1.4"},
+      {:absinthe_phoenix, "~> 1.4.0"},
+      {:cors_plug, "~> 2.0"},
       {:phoenix, "~> 1.4.11"},
       {:phoenix_pubsub, "~> 1.1"},
       {:gettext, "~> 0.11"},
