@@ -21,6 +21,7 @@ defmodule SimpleMap.GeocodesTest do
     assert process_response_body("") === %{}
     assert process_response_body([]) === %{}
     assert process_response_body(%{}) === %{}
+    assert process_response_body(%{"results" => []}) === %{}
     assert process_response_body(%{"results" => [%{"annotations" => ""}]}) === %{}
 
     assert process_response_body(%{"results" => [%{"annotations" => unexpected_annotations}]}) ===
