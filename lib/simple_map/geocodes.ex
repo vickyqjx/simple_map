@@ -47,7 +47,7 @@ defmodule SimpleMap.Geocodes do
   ## Example:
       {:ok, %{id: 1, map_url: "https://...", lat: "37° 49' 1.81092'' S", lng: "144° 57' 11.78100'' E"}
   """
-  def process_response_body(%{"results" => results}) do
+  def process_response_body(%{"results" => results}) when results !== [] do
     results
     |> List.first()
     |> Map.get("annotations")
