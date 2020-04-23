@@ -1,8 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { render } from 'react-dom';
+//import logo from './logo.svg';
+//import './css/App.css';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { client } from "./utils/apollo";
+import Favorites from "./components/Favorites";
 
 function App() {
+
+  return (
+    <ApolloProvider client={client}>
+      <div>
+        <h2>My first Apollo app 🚀</h2>
+        <Favorites />
+      </div>
+    </ApolloProvider>
+  );
+}
+
+/*function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +37,6 @@ function App() {
       </header>
     </div>
   );
-}
+}*/
 
 export default App;
