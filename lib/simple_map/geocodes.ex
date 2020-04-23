@@ -50,6 +50,7 @@ defmodule SimpleMap.Geocodes do
   def process_response_body(%{"results" => results}) when results !== [] do
     results
     |> List.first()
+    |> IO.inspect()
     |> Map.get("annotations")
     |> format_geocode_info
   end
