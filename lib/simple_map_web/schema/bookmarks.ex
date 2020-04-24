@@ -23,4 +23,17 @@ defmodule SimpleMapWeb.Schema.Bookmarks do
       resolve(&Resolvers.MapResolver.get_bookmark/3)
     end
   end
+
+  object :bookmarks_mutations do
+    field :add_bookmark, :bookmark do
+      arg(:name, :string)
+      arg(:address, non_null(:string))
+      resolve(&Resolvers.MapResolver.add_bookmark/3)
+    end
+
+    field :remove_bookmark, :bookmark do
+      arg(:id, :id)
+      resolve(&Resolvers.MapResolver.remove_bookmark/3)
+    end
+  end
 end

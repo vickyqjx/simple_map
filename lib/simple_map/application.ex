@@ -18,6 +18,9 @@ defmodule SimpleMap.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: SimpleMap.Supervisor]
     Supervisor.start_link(children, opts)
+
+    # Keep favoriate list, TODO: move to Database later
+    Agent.start_link(fn -> [] end, name: :bookmarks)
   end
 
   # Tell Phoenix to update the endpoint configuration

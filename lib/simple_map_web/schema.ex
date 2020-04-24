@@ -9,4 +9,8 @@ defmodule SimpleMapWeb.Schema do
     import_fields(:bookmark_queries)
     import_fields(:location_queries)
   end
+
+  mutation do
+    import_fields(:bookmarks_mutations)
+  end
 end

@@ -5,23 +5,28 @@ defmodule SimpleMap.Locations do
 
   @api_url "https://api.opencagedata.com/geocode/v1/json"
   @api_key "e51bddfb5edc4057bff720a67e25204f"
+  @max_random_number 1_000_000
 
   @doc """
   Return the location info based on the address
+  ## Example:
+      Expected ouputs:
+      %{id: 1, map_url: "https://...", lat: "37° 49' 1.81092'' S", lng: "144° 57' 11.78100'' E"}
+      nil
   """
-  def get_location(address) do
+  def find_one(address) do
     request_url = "#{@api_url}?q=#{String.replace(address, " ", "+")}&key=#{@api_key}"
 
     case get_api_response(request_url) do
-      {:ok, response} -> Map.put(response, :address, address)
-      _ -> %{}
+      {:ok, response} when response !== %{} -> Map.put(response, :address, address)
+      _ -> nil
     end
   end
 
   @doc """
   call api: https://opencagedata.com/api, then return the processed response
   ## Example:
-      {:ok, %{id: 1, map_url: "https://...", lat: "37° 49' 1.81092'' S", lng: "144° 57' 11.78100'' E"}
+      {:ok, %{id: 1, map_url: "https://...", lat: "37° 49' 1.81092'' S", lng: "144° 57' 11.78100'' E"}}
   """
   def get_api_response(request_url) do
     case HTTPoison.get(request_url) do
@@ -61,7 +66,7 @@ defmodule SimpleMap.Locations do
   # format the gepcode info which contains these fields: id, map_url, lat, lng
   defp format_location_info(%{"OSM" => %{"url" => url}, "DMS" => %{"lat" => lat, "lng" => lng}}) do
     %{
-      id: :rand.uniform(1_000_000),
+      id: :rand.uniform(@max_random_number),
       map_url: url,
       lat: lat,
       lng: lng
