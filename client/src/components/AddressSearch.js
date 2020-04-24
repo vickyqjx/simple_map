@@ -11,7 +11,7 @@ class AddressSearch extends React.Component {
     super(props);
     this.state = {
       inputAddress: '',
-      geocode: '',
+      location: '',
     }
   }
 
@@ -38,7 +38,7 @@ class AddressSearch extends React.Component {
   renderSearchResults() {
     return (
       <div>
-        <div>`${this.state.geocode.lat}/${this.state.geocode.lng}`</div>
+        <div>`${this.state.location.lat}/${this.state.location.lng}`</div>
         <iframe width="400" height="300" id="gmap_canvas" src={`https://maps.google.com/maps?q=${encodeURI(this.state.inputAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
       </div>
     )

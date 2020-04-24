@@ -1,15 +1,15 @@
-defmodule SimpleMap.Geocodes do
+defmodule SimpleMap.Locations do
   @moduledoc """
-  The Geocodes context.
+  The Locations context.
   """
 
   @api_url "https://api.opencagedata.com/geocode/v1/json"
   @api_key "e51bddfb5edc4057bff720a67e25204f"
 
   @doc """
-  Return the geo info based on the address
+  Return the location info based on the address
   """
-  def get_geocode(address) do
+  def get_location(address) do
     request_url = "#{@api_url}?q=#{String.replace(address, " ", "+")}&key=#{@api_key}"
 
     case get_api_response(request_url) do
@@ -50,9 +50,8 @@ defmodule SimpleMap.Geocodes do
   def process_response_body(%{"results" => results}) when results !== [] do
     results
     |> List.first()
-    |> IO.inspect()
     |> Map.get("annotations")
-    |> format_geocode_info
+    |> format_location_info
   end
 
   def process_response_body(_) do
@@ -60,7 +59,7 @@ defmodule SimpleMap.Geocodes do
   end
 
   # format the gepcode info which contains these fields: id, map_url, lat, lng
-  defp format_geocode_info(%{"OSM" => %{"url" => url}, "DMS" => %{"lat" => lat, "lng" => lng}}) do
+  defp format_location_info(%{"OSM" => %{"url" => url}, "DMS" => %{"lat" => lat, "lng" => lng}}) do
     %{
       id: :rand.uniform(1_000_000),
       map_url: url,
@@ -69,7 +68,7 @@ defmodule SimpleMap.Geocodes do
     }
   end
 
-  defp format_geocode_info(_) do
+  defp format_location_info(_) do
     %{}
   end
 end

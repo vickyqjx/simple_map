@@ -4,7 +4,7 @@ import { gql } from 'apollo-boost';
 
 const FAVORITES = gql`
   {
-    allLocations {
+    allBookmarks {
       id
       name
       address
@@ -20,7 +20,7 @@ function Favorites() {
 
   return (
     <ul>
-      {data.allLocations.map(location => (
+      {data.allBookmarks.map(location => (
         <li key={location.id}>
           {location.name}: {location.address}
         </li>

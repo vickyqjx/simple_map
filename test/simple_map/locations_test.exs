@@ -1,6 +1,6 @@
-defmodule SimpleMap.GeocodesTest do
+defmodule SimpleMap.LocationsTest do
   use ExUnit.Case
-  import SimpleMap.Geocodes
+  import SimpleMap.Locations
 
   test "process response body" do
     # set testing data

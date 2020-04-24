@@ -14,7 +14,7 @@ defmodule SimpleMap.Bookmarks do
       [%Link{}, ...]
 
   """
-  def list_locations do
+  def list_bookmarks do
     %{id: 1, name: "address name", address: "jee street,vic"}
   end
 end
