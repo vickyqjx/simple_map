@@ -13,4 +13,8 @@ defmodule SimpleMapWeb.Schema do
   mutation do
     import_fields(:bookmarks_mutations)
   end
+
+  subscription do
+    import_fields(:bookmarks_subscriptions)
+  end
 end

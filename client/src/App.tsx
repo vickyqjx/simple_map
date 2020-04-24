@@ -3,11 +3,12 @@ import React from 'react';
 //import logo from './logo.svg';
 //import './css/App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { client } from "./utils/apollo";
+import { createClient } from "./utils/apollo";
 import Favorites from "./components/Favorites";
 import AddressSearch from "./components/AddressSearch";
 
 function App() {
+  const client = createClient();
   return (
     <ApolloProvider client={client}>
       <div>

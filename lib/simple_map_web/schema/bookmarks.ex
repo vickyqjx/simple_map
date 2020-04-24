@@ -36,4 +36,18 @@ defmodule SimpleMapWeb.Schema.Bookmarks do
       resolve(&Resolvers.MapResolver.remove_bookmark/3)
     end
   end
+
+  object :bookmarks_subscriptions do
+    field :bookmark_created, :bookmark do
+      config(fn _, _ ->
+        {:ok, topic: "bookmarks"}
+      end)
+
+      trigger(:add_bookmark,
+        topic: fn _ ->
+          "bookmarks"
+        end
+      )
+    end
+  end
 end
