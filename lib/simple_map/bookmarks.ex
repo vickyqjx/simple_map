@@ -22,7 +22,7 @@ defmodule SimpleMap.Bookmarks do
       %{}
   """
   def find_one(id) do
-    list_all |> Enum.find(fn item -> Integer.to_string(item[:id]) === id end)
+    list_all() |> Enum.find(fn item -> Integer.to_string(item[:id]) === id end)
   end
 
   @doc """
