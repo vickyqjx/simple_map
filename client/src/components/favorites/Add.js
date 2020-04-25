@@ -46,7 +46,7 @@ function Add() {
               onChange={(e) => setName(e.target.value)}
             />
             <Form.Text className="text-muted">
-              Name is required for saving the location
+              Name is required for saving the location({selectedAddress})
             </Form.Text>
           </Form.Group>
         </Form>
@@ -56,7 +56,7 @@ function Add() {
           Close
         </Button>
         <Mutation mutation={ADD_BOOKMARK} variables={{ name: name, address: selectedAddress }}>
-          {postMutation => <Button variant="primary" onClick={() => {postMutation(); handleClose()}} disabled={name == ''}>Save</Button>}
+          {postMutation => <Button variant="primary" onClick={() => {postMutation(); handleClose()}} disabled={name === ''}>Save</Button>}
         </Mutation>
       </Modal.Footer>
     </Modal>

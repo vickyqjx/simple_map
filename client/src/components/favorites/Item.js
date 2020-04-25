@@ -28,7 +28,7 @@ function Item({location}) {
   }
 
   return (
-    <ListGroup.Item as="li" key={location.id} active={location.address == searchAddress} variant="light" className="d-flex justify-content-between">
+    <ListGroup.Item as="li" key={location.id} active={location.address === searchAddress} variant="light" className="d-flex justify-content-between">
       <div
         className="text-small text-hover"
         onClick={() => {setSelectedAddress(location.address); setSearchAddress(location.address)}}

@@ -19,7 +19,7 @@ const GET_GEOCODE = gql`
   }
 `;
 
-function SearchResults(props) {
+function SearchResults() {
   //get the selected address from the LocationContext
   const { searchAddress } = useContext(LocationContext);
 
@@ -28,7 +28,7 @@ function SearchResults(props) {
   })
 
   if (loading) return 'Loading...';
-  if (error & searchAddress != '') return `Error! ${error.message}`;
+  if (error & searchAddress !== '') return `Error! ${error.message}`;
   if (!data || !data.location) return '';
 
   return (
