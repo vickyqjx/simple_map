@@ -28,14 +28,15 @@ function SearchResults(props) {
   })
 
   if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  if (error & searchAddress != '') return `Error! ${error.message}`;
   if (!data || !data.location) return '';
-  
+
   return (
-    <>
+    <div className="margin-top">
+      <h6>Search Results for: <span className="text-small font-italic font-weight-light">{searchAddress}</span></h6>
       <Coordinates latitude={data.location.lat} longitude={data.location.lng} />
       <Map url={data.location.map_url}/>
-    </>
+    </div>
   );
 }
 

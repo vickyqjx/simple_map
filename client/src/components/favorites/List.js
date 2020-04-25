@@ -2,7 +2,9 @@ import React from 'react';
 import { Query } from "react-apollo";
 import { gql } from 'apollo-boost';
 import produce from "immer";
+
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 import Subscriber from '../../utils/subscriber';
 
@@ -31,7 +33,7 @@ const BOOKMARKS_SUBSCRIPTION = gql`
 
 function List() {
   return (
-    <Jumbotron>
+    <Jumbotron className="h-100">
       <h5>Favorites List</h5>
       <Query query={FAVORITES}>
         {({ loading, error, data, subscribeToMore }) => {
@@ -61,11 +63,11 @@ function List() {
                   },
                 })
               }>
-              <ul>
+              <ListGroup as="ul">
                 {data.allBookmarks.map(location => (
                   <Item location={location} key={location.id} />
                 ))}
-              </ul>
+              </ListGroup>
           </Subscriber>
           );
         }}

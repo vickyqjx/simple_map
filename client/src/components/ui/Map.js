@@ -4,7 +4,7 @@ function Map({url}) {
   return (
     <iframe
       width="100%"
-      height="300"
+      height="400"
       id="gmap_canvas"
       src={url}
       frameBorder="0"

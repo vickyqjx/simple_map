@@ -1,7 +1,7 @@
 import React from 'react';
 //import { render } from 'react-dom';
 //import logo from './logo.svg';
-//import './css/App.css';
+import './css/App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { createClient } from "./utils/apollo";
 import Header from "./components/ui/Header";

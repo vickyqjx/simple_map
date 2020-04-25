@@ -23,7 +23,10 @@ function Add() {
   const [name, setName] = useState('');
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setName('');
+    setShow(true);
+  }
 
   //get the selected address from the LocationContext
   const { selectedAddress } = useContext(LocationContext);
@@ -31,17 +34,20 @@ function Add() {
   const renderModal = () => (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add a name</Modal.Title>
+        <Modal.Title>Save to Favorites List</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Control
               type="text"
-              placeholder="Enter name"
+              placeholder="Enter name (Required)"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <Form.Text className="text-muted">
+              Name is required for saving the location
+            </Form.Text>
           </Form.Group>
         </Form>
       </Modal.Body>
@@ -50,7 +56,7 @@ function Add() {
           Close
         </Button>
         <Mutation mutation={ADD_BOOKMARK} variables={{ name: name, address: selectedAddress }}>
-          {postMutation => <Button variant="primary" onClick={() => {postMutation(); handleClose()}}>Save</Button>}
+          {postMutation => <Button variant="primary" onClick={() => {postMutation(); handleClose()}} disabled={name == ''}>Save</Button>}
         </Mutation>
       </Modal.Footer>
     </Modal>

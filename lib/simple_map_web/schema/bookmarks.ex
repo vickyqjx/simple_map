@@ -48,6 +48,12 @@ defmodule SimpleMapWeb.Schema.Bookmarks do
           "bookmarks"
         end
       )
+
+      trigger(:remove_bookmark,
+        topic: fn _ ->
+          "bookmarks"
+        end
+      )
     end
   end
 end
