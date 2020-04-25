@@ -27,53 +27,56 @@ const BOOKMARKS_SUBSCRIPTION = gql`
 
 function Favorites() {
   return (
-    <Query query={FAVORITES}>
-      {({ loading, error, data, subscribeToMore }) => {
-        if (loading) return "<p>Loading...</p>";
-        if (error) return `<p>Error! ${error.message}</p>`;
+    <>
+      <h5>Favorites</h5>
+      <Query query={FAVORITES}>
+        {({ loading, error, data, subscribeToMore }) => {
+          if (loading) return 'Loading...';
+          if (error) return `Error! ${error.message}`;
 
-        return (
-          <Subscriber subscribeToNew={() =>
-              subscribeToMore({
-                document: BOOKMARKS_SUBSCRIPTION,
-                updateQuery: (prev, { subscriptionData }) => {
-                  console.log('----111----');
-                  console.log(subscriptionData);
-                  // if nothing is coming through the socket, just use the current data
-                  if (!subscriptionData.data) return prev;
+          return (
+            <Subscriber subscribeToNew={() =>
+                subscribeToMore({
+                  document: BOOKMARKS_SUBSCRIPTION,
+                  updateQuery: (prev, { subscriptionData }) => {
+                    console.log('----111----');
+                    console.log(subscriptionData);
+                    // if nothing is coming through the socket, just use the current data
+                    if (!subscriptionData.data) return prev;
 
-                  // something new is coming in!
-                  const newBookmark = subscriptionData.data.bookmarkCreated;
+                    // something new is coming in!
+                    const newBookmark = subscriptionData.data.bookmarkCreated;
 
-                  console.log('----222----');
-                  console.log(newBookmark);
-
-                  // Check that we don't already have the bookmark stored.
-                  if (prev.allBookmarks.find((bookmark) => bookmark.id === newBookmark.id)) {
-                    return prev;
-                  }
-
-                  console.log('----33333----');
-
-                  return produce(prev, (next) => {
-                    // Add that new bookmark!
+                    console.log('----222----');
                     console.log(newBookmark);
-                    next.allBookmarks.unshift(newBookmark);
-                  });
-                },
-              })
-            }>
-            <ul>
-              {data.allBookmarks.map(location => (
-                <li key={location.id}>
-                  {location.name}: {location.address}
-                </li>
-              ))}
-            </ul>
-        </Subscriber>
-        );
-      }}
-    </Query>
+
+                    // Check that we don't already have the bookmark stored.
+                    if (prev.allBookmarks.find((bookmark) => bookmark.id === newBookmark.id)) {
+                      return prev;
+                    }
+
+                    console.log('----33333----');
+
+                    return produce(prev, (next) => {
+                      // Add that new bookmark!
+                      console.log(newBookmark);
+                      next.allBookmarks.unshift(newBookmark);
+                    });
+                  },
+                })
+              }>
+              <ul>
+                {data.allBookmarks.map(location => (
+                  <li key={location.id}>
+                    {location.name}: {location.address}
+                  </li>
+                ))}
+              </ul>
+          </Subscriber>
+          );
+        }}
+      </Query>
+    </>
   );
 }
 

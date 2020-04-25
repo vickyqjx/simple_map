@@ -15,11 +15,17 @@ defmodule SimpleMap.Locations do
       nil
   """
   def find_one(address) do
-    request_url = "#{@api_url}?q=#{String.replace(address, " ", "+")}&key=#{@api_key}"
+    encode_address = URI.encode(address)
+    request_url = "#{@api_url}?q=#{encode_address}&key=#{@api_key}"
+
+    url = "https://maps.google.com/maps?q=#{encode_address}&t=&z=13&ie=UTF8&iwloc=&output=embed"
 
     case get_api_response(request_url) do
-      {:ok, response} when response !== %{} -> Map.put(response, :address, address)
-      _ -> nil
+      {:ok, response} when response !== %{} ->
+        response |> Map.put(:address, address) |> Map.put(:map_url, url)
+
+      _ ->
+        nil
     end
   end
 
@@ -63,11 +69,10 @@ defmodule SimpleMap.Locations do
     %{}
   end
 
-  # format the gepcode info which contains these fields: id, map_url, lat, lng
-  defp format_location_info(%{"OSM" => %{"url" => url}, "DMS" => %{"lat" => lat, "lng" => lng}}) do
+  # format the gepcode info which contains these fields: id, lat, lng
+  defp format_location_info(%{"DMS" => %{"lat" => lat, "lng" => lng}}) do
     %{
       id: :rand.uniform(@max_random_number),
-      map_url: url,
       lat: lat,
       lng: lng
     }

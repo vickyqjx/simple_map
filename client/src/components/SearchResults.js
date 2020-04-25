@@ -3,6 +3,8 @@ import { Mutation } from 'react-apollo'
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Button from 'react-bootstrap/Button';
+import Map from './ui/Map';
+import Coordinates from './ui/Coordinates';
 
 const GET_GEOCODE = gql`
   query Geocode($address: String!) {
@@ -24,13 +26,13 @@ const ADD_BOOKMARK = gql`
  `;
 
 function renderResults(loading, error, data, props) {
-  if (loading) return "<p>Loading...</p>";
-  if (error) return `<p>Error! ${error.message}</p>`;
-  if (!data || !data.location) return "";
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+  if (!data || !data.location) return '';
   return (
     <div>
-      <div>`${data.location.lat}/${data.location.lng}`</div>
-      <iframe width="400" height="300" id="gmap_canvas" src={`https://maps.google.com/maps?q=${encodeURI(props.address)}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
+      <Coordinates latitude={data.location.lat} longitude={data.location.lng} />
+      <Map url={data.location.map_url}/>
     </div>
   );
 }
