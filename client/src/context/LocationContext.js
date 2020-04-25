@@ -17,9 +17,9 @@ export const Provider = props => {
 
   // Make the context object:
   const loationContext = {
-    selectedAddress,
+    selectedAddress, //address display on the text field
     setSelectedAddress,
-    searchAddress,
+    searchAddress, //address is used to pass to the backend
     setSearchAddress
   };
 

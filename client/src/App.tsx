@@ -5,14 +5,14 @@ import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { createClient } from "./utils/apollo";
 import Header from "./components/ui/Header";
-import MainContainer from "./components/MainContainer";
+import MainLayout from "./components/MainLayout";
 
 function App() {
   const client = createClient();
   return (
     <ApolloProvider client={client}>
       <Header text="Simple Map App" />
-      <MainContainer />
+      <MainLayout />
     </ApolloProvider>
   );
 }

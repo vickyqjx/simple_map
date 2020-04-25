@@ -1,17 +1,13 @@
-// import the hook
-import React, { useContext } from 'react';
-
-import { useQuery } from '@apollo/react-hooks';
+import React from 'react';
 import { Query } from "react-apollo";
 import { gql } from 'apollo-boost';
 import produce from "immer";
-
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
-import Subscriber from "../utils/subscriber";
+import Subscriber from '../../utils/subscriber';
 
-//Import the Context
-import { LocationContext } from "./context";
+import Item from './Item';
+
 
 const FAVORITES = gql`
   {
@@ -33,13 +29,10 @@ const BOOKMARKS_SUBSCRIPTION = gql`
    }
  `
 
-function Favorites() {
-  const locationContext = useContext(LocationContext);
-  const { setSelectedAddress, setSearchAddress } = locationContext;
-
+function List() {
   return (
     <Jumbotron>
-      <h5>Favorites</h5>
+      <h5>Favorites List</h5>
       <Query query={FAVORITES}>
         {({ loading, error, data, subscribeToMore }) => {
           if (loading) return 'Loading...';
@@ -63,7 +56,6 @@ function Favorites() {
 
                     return produce(prev, (next) => {
                       // Add that new bookmark!
-                      console.log(newBookmark);
                       next.allBookmarks.unshift(newBookmark);
                     });
                   },
@@ -71,9 +63,7 @@ function Favorites() {
               }>
               <ul>
                 {data.allBookmarks.map(location => (
-                  <li key={location.id} onClick={() => {setSelectedAddress(location.address); setSearchAddress(location.address)}}>
-                    {location.name}: {location.address}
-                  </li>
+                  <Item location={location} key={location.id} />
                 ))}
               </ul>
           </Subscriber>
@@ -84,4 +74,4 @@ function Favorites() {
   );
 }
 
-export default Favorites;
+export default List;
