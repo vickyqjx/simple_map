@@ -1,4 +1,6 @@
-import React from 'react';
+// import the hook
+import React, { useContext } from 'react';
+
 import { useQuery } from '@apollo/react-hooks';
 import { withApollo } from 'react-apollo';
 import { gql } from 'apollo-boost';
@@ -6,43 +8,30 @@ import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import SearchResults from './SearchResults';
 
-class AddressSearch extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputAddress: '',
-      location: '',
-    }
-  }
+//Import the Context
+import { LocationContext } from "./context";
 
-  changeInput(value) {
-    this.setState({
-      inputAddress: value,
-    });
-  }
+function AddressSearch() {
+  //get the selected address from the LocationContext
+  const { selectedAddress } = useContext(LocationContext);
 
-  renderToolbar() {
-    return(
+  const locationContext = useContext(LocationContext);
+  const { setSelectedAddress } = locationContext;
+
+  return (
+    <div>
       <InputGroup>
         <FormControl
           placeholder="Address"
           aria-label="Address"
           aria-describedby="basic-addon"
-          value={this.state.inputAddress}
-          onChange={(e) => this.changeInput(e.target.value)}
+          value={selectedAddress}
+          onChange={(e) => setSelectedAddress(e.target.value)}
         />
       </InputGroup>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        {this.renderToolbar()}
-        <SearchResults address={this.state.inputAddress} />
-      </div>
-    );
-  }
+      <SearchResults address={selectedAddress} />
+    </div>
+  );
 }
 
 export default AddressSearch;
