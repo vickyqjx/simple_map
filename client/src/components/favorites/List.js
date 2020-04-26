@@ -2,12 +2,11 @@ import React from 'react';
 import { Query } from "react-apollo";
 import { gql } from 'apollo-boost';
 import produce from "immer";
-
+// Import the bootstrap components
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import Subscriber from '../../utils/subscriber';
-
 import Item from './Item';
 
 

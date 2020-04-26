@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Mutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
-
+// Import the bootstrap components
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
 //Import the Context
 import { LocationContext } from '../../context';
 

@@ -1,12 +1,10 @@
-// import the hook
+// Import the hook
 import React, { useContext } from 'react';
-import { Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
-
+// Import the bootstrap component
 import ListGroup from 'react-bootstrap/ListGroup';
-
-//Import the Context
+// Import the Context
 import { LocationContext } from '../../context';
+import Remove from './Remove';
 
 function Item({location}) {
 
@@ -15,13 +13,6 @@ function Item({location}) {
     setSelectedAddress,
     setSearchAddress
   } = useContext(LocationContext);
-
-  const REMOVE_BOOKMARK = gql`
-    mutation Remove($id: String!) {
-      removeBookmark(id: $id) {
-        id
-      }
-    }`;
 
   if (location.address == null) {
     return (<></>);
@@ -35,9 +26,7 @@ function Item({location}) {
       >
         <span className="text-capitalize font-weight-bold">{location.name}</span>: {location.address}
       </div>
-      <Mutation mutation={REMOVE_BOOKMARK} variables={{ id: location.id }}>
-        {postMutation => <span onClick={() => postMutation()} className="font-weight-bold small-margin-top-left icon-hover">X</span>}
-      </Mutation>
+      <Remove id={location.id} />
     </ListGroup.Item>
   );
 }

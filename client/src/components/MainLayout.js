@@ -1,14 +1,12 @@
 // import the hook
 import React from "react";
-
 // import the bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-//Import the Context Provider
+// import the Context Provider
 import { LocationContextProvider } from "../context";
-
+// import project components
 import FavoritesList from "./favorites/List";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";

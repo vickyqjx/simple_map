@@ -1,10 +1,10 @@
-// import the hook
+// Import the hook
 import React, { useContext } from 'react';
+// Import the bootstrap components
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-
-//Import the Context
+// Import the Context
 import { LocationContext } from '../context';
 
 import Add from './favorites/Add';
