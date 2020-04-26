@@ -8,7 +8,7 @@
 
 ## Backend API Server
 ### Option 1 : To start API server via Docker:
-Run command in the project root directory `docker-compose up -build -d`
+Run command in the project root directory `docker-compose up --build -d`
 
 ### Option 2 :  To start API server manually :
   * Install `Elixir ~> V1.8`  is you do not have it installed  before ([https://elixir-lang.org/install.html](https://elixir-lang.org/install.html))
