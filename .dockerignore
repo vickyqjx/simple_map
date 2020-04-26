@@ -11,3 +11,5 @@ erl_crash.dump
 
 #front-end app
 /client/
+
+/docs/
