@@ -7,10 +7,10 @@
 * `client` directory contains the code for Frontend App
 
 ## Backend API Server
-### To start API server via Docker:
+### Option 1 : To start API server via Docker:
 Run command in the project root directory `docker-compose up -build -d`
 
-### To start API server manually :
+### Option 2 :  To start API server manually :
   * Install `Elixir ~> V1.8`  is you do not have it installed  before ([https://elixir-lang.org/install.html](https://elixir-lang.org/install.html))
   * Make sure you are in the project root directory
   * Install dependencies with `mix deps.get`
@@ -20,7 +20,6 @@ Now you can test your GraphQL API via ([http://localhost:4000/graphiql](http://l
 ![API Example](https://github.com/vickyqjx/simple_map/blob/master/docs/GraphQL_example.png)
 Query Examples:
 ``` js
-//QUERY
 {
   location (address: "255 Bourke St, Melbourne VIC 3000") {
     map_url
@@ -31,7 +30,6 @@ Query Examples:
 ```
 
 ``` js
-//QUERY
 mutation Add($name: String!, $address: String!) {
   addBookmark(name: $name, address: $address) {
     name
@@ -47,7 +45,6 @@ mutation Add($name: String!, $address: String!) {
 ```
 
 ``` js
-//QUERY
 mutation remove_bookmark {
   remove_bookmark(
     id: 180144
