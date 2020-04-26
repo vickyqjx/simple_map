@@ -40,7 +40,7 @@ defmodule SimpleMap.Bookmarks do
     {:ok, new_bookmark}
   end
 
-  def add(attrs) do
+  def add(_attrs) do
     {:error, "Name or address value is missing"}
   end
 

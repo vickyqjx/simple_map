@@ -1,0 +1,14 @@
+# Version of docker-compose
+version: '3.3'
+
+# Containers
+services:
+  # Phoenix container
+  phoenix:
+    # Here we define that it should build from the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["mix", "phx.server"]
+    ports:
+      - "4000:4000"
