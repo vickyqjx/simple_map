@@ -11,7 +11,7 @@
 Run command in the project root directory `docker-compose up --build -d`
 
 ### Option 2 :  To start API server manually :
-  * Install `Elixir ~> V1.8`  is you do not have it installed  before ([https://elixir-lang.org/install.html](https://elixir-lang.org/install.html))
+  * Install `Elixir ~> V1.8`  if you do not have it installed  before ([https://elixir-lang.org/install.html](https://elixir-lang.org/install.html))
   * Make sure you are in the project root directory
   * Install dependencies with `mix deps.get`
   * Start Phoenix endpoint with `mix phx.server`

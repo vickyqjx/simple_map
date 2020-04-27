@@ -1,7 +1,7 @@
 ## Simple Map React App
 
 ## Steps to run
- * Install `yarn` if you do not have this installed on you OS ([https://classic.yarnpkg.com/en/docs/install/#mac-stable](https://classic.yarnpkg.com/en/docs/install/#mac-stable))
+ * Install `yarn` if you do not have it installed before ([https://classic.yarnpkg.com/en/docs/install/#mac-stable](https://classic.yarnpkg.com/en/docs/install/#mac-stable))
  * Go to the this `/client/` directory first
  * Install dependencies with `yarn install`
  * Start React App with `yarn start`
