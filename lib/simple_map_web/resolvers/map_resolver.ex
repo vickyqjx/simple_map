@@ -30,6 +30,7 @@ defmodule SimpleMapWeb.Resolvers.MapResolver do
 
   def get_location_data(_parent, args, _resolutions) do
     case Locations.find_one(args[:address]) do
+      {:error, error_msg} -> {:error, error_msg}
       nil -> {:error, "Not found"}
       location_data -> {:ok, location_data}
     end

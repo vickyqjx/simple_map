@@ -16,14 +16,18 @@ const link = split(
 );
 
 const errorLink = new onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
+  if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) =>
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
       ),
     );
+  }
 
-  if (networkError) console.log(`[Network error]: ${networkError}`); alert('Service is temporary unavailable');
+  if (networkError) {
+    console.log(`[Network error]: ${networkError}`);
+    alert('Service is temporary unavailable');
+  }
 });
 
 export const createClient = () => {

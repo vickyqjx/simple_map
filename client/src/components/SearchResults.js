@@ -28,7 +28,8 @@ function SearchResults() {
   })
 
   if (loading) return 'Loading...';
-  if (error & searchAddress !== '') return `Error! ${error.message}`;
+  if (error && error.message === 'econnrefused') return `Error! Connection refused by server!`;
+  if (error && searchAddress !== '') return `Error! ${error.message}`;
   if (!data || !data.location) return '';
 
   return (
