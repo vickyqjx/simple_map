@@ -55,7 +55,15 @@ function Add() {
           Close
         </Button>
         <Mutation mutation={ADD_BOOKMARK} variables={{ name: name, address: selectedAddress }}>
-          {postMutation => <Button variant="primary" onClick={() => {postMutation(); handleClose()}} disabled={name === ''}>Save</Button>}
+          {postMutation => <Button
+            variant="primary"
+            onClick={() => {postMutation().catch(res => {
+                const errors = res.graphQLErrors.map(error => error.message);
+                console.log(errors);
+              }); handleClose()}
+            }
+            disabled={name === ''}
+        >Save</Button>}
         </Mutation>
       </Modal.Footer>
     </Modal>

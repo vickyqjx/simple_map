@@ -12,7 +12,15 @@ const REMOVE_BOOKMARK = gql`
 function Item({id}) {
   return (
     <Mutation mutation={REMOVE_BOOKMARK} variables={{ id: id }}>
-      {postMutation => <span onClick={() => postMutation()} className="font-weight-bold small-margin-top-left icon-hover">X</span>}
+      {postMutation => <span
+        onClick={() => postMutation().catch(res => {
+          const errors = res.graphQLErrors.map(error => error.message);
+          console.log(errors);
+        })}
+        className="font-weight-bold small-margin-top-left icon-hover"
+      >
+        X
+      </span>}
     </Mutation>
   );
 }
