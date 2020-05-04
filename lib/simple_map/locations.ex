@@ -35,7 +35,7 @@ defmodule SimpleMap.Locations do
       {:ok, %{id: 1, map_url: "https://...", lat: "37° 49' 1.81092'' S", lng: "144° 57' 11.78100'' E"}}
   """
   def get_api_response(request_url) do
-    case HTTPoison.get(request_url) |> IO.inspect do
+    case HTTPoison.get(request_url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok,
          body

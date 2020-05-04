@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 //Import the Context
-import { LocationContext } from '../../context';
+import { LocationCtx } from '../../context/LocationContext';
 
 const ADD_BOOKMARK = gql`
   mutation Add($name: String!, $address: String!) {
@@ -17,7 +17,7 @@ const ADD_BOOKMARK = gql`
   }
  `;
 
-function Add() {
+const Add = () => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
 
@@ -28,7 +28,7 @@ function Add() {
   }
 
   //get the selected address from the LocationContext
-  const { selectedAddress } = useContext(LocationContext);
+  const { selectedAddress } = useContext(LocationCtx);
 
   const renderModal = () => (
     <Modal show={show} onHide={handleClose}>

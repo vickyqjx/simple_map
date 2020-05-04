@@ -9,7 +9,11 @@ const REMOVE_BOOKMARK = gql`
     }
   }`;
 
-function Item({id}) {
+interface ItemProps {
+  id?: string
+}
+
+const Item = ({ id }: ItemProps) => {
   return (
     <Mutation mutation={REMOVE_BOOKMARK} variables={{ id: id }}>
       {postMutation => <span

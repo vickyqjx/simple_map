@@ -5,17 +5,16 @@ import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 // Import the Context
-import { LocationContext } from '../context';
+import { LocationCtx } from '../context/LocationContext';
 
 import Add from './favorites/Add';
 
-function SearchBar() {
-  //get the selected address from the LocationContext
+const SearchBar = () => {
   const {
     selectedAddress,
     setSelectedAddress,
     setSearchAddress,
-  } = useContext(LocationContext);
+  } = useContext(LocationCtx);
 
   const keyPressed = (event) => {
     if (event.key === "Enter") {
